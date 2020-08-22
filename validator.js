@@ -302,6 +302,7 @@ UniversalValidation.prototype.setDefaultOptions = function() {
     this.setDefaultOption('scrollTime', 750);
     this.setDefaultOption('scrollOffset', 0);
     this.setDefaultOption("custom", {});
+    this.setDefaultOption("validateOnLaunch", false);
 };
 
 UniversalValidation.prototype.validate = function(options) {
@@ -315,4 +316,11 @@ UniversalValidation.prototype.validate = function(options) {
     this.setDefaultOptions();
     this.capture();
     this.instrument();
+
+    if (this.options.validateOnLaunch === true) {
+        for (var i = 0; i < this.forms.length; i++) {
+            this.forms[i].validate();
+        }
+    }
+
 };
